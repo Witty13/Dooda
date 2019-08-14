@@ -1,0 +1,3 @@
+[submodule "Dooda/vendor/spdlog"]
+	path = Dooda/vendor/spdlog
+	url = https://github.com/gabime/spdlog
