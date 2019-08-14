@@ -2,6 +2,7 @@
 
 //For use by applications
 #include "Dooda/Application.h"
+#include "Dooda/Log.h"
 
 ///////////////
 //Entry Point//
