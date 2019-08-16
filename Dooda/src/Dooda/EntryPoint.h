@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Dooda.h"
+#include "Dooda.h"
 
 #ifdef DD_PLATFORM_WINDOWS
 

@@ -9,3 +9,5 @@
 #else
 	#error Dooda only suports windows
 #endif
+
+#define BIT(x) (1 << x)
