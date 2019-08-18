@@ -7,34 +7,34 @@ namespace Dooda {
 	class DOODA_API KeyEvent : public Event
 	{
 	public:
-		inline int GetKeyCode() const { return m_KeyCode; }
+		inline int GetKeyCode() const { return d_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
 		KeyEvent(int keycode)
-			: m_KeyCode(keycode) {}
+			: d_KeyCode(keycode) {}
 
-		int m_KeyCode;
+		int d_KeyCode;
 	};
 
 	class DOODA_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
-			: KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+			: KeyEvent(keycode), d_RepeatCount(repeatCount) {}
 
-		inline int GetRepeatCount() const { return m_RepeatCount; }
+		inline int GetRepeatCount() const { return d_RepeatCount; }
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
+			ss << "KeyPressedEvent: " << d_KeyCode << " (" << d_RepeatCount << " repeats)";
 			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(KeyPressed)
 	private:
-		int m_RepeatCount;
+		int d_RepeatCount;
 	};
 
 	class DOODA_API KeyReleasedEvent : public KeyEvent
@@ -46,7 +46,7 @@ namespace Dooda {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "KeyReleasedEvent: " << m_KeyCode;
+			ss << "KeyReleasedEvent: " << d_KeyCode;
 			return ss.str();
 		}
 
@@ -62,7 +62,7 @@ namespace Dooda {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "KeyTypedEvent: " << m_KeyCode;
+			ss << "KeyTypedEvent: " << d_KeyCode;
 			return ss.str();
 		}
 

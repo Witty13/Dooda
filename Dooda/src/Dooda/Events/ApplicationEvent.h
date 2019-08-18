@@ -8,22 +8,22 @@ namespace Dooda {
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
-			: m_Width(width), m_Height(height) {}
+			: d_Width(width), d_Height(height) {}
 
-		inline unsigned int GetWidth() const { return m_Width; }
-		inline unsigned int GetHeight() const { return m_Height; }
+		inline unsigned int GetWidth() const { return d_Width; }
+		inline unsigned int GetHeight() const { return d_Height; }
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
+			ss << "WindowResizeEvent: " << d_Width << ", " << d_Height;
 			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(WindowResize)
 			EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	private:
-		unsigned int m_Width, m_Height;
+		unsigned int d_Width, d_Height;
 	};
 
 	class DOODA_API WindowCloseEvent : public Event

@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Dooda/Log.h"
+
 #ifdef DD_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

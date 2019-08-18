@@ -8,32 +8,32 @@ namespace Dooda {
 	{
 	public:
 		MouseMovedEvent(float x, float y)
-			: m_MouseX(x), m_MouseY(y) {}
+			: d_MouseX(x), d_MouseY(y) {}
 
-		inline float GetX() const { return m_MouseX; }
-		inline float GetY() const { return m_MouseY; }
+		inline float GetX() const { return d_MouseX; }
+		inline float GetY() const { return d_MouseY; }
 
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
+			ss << "MouseMovedEvent: " << d_MouseX << ", " << d_MouseY;
 			return ss.str();
 		}
 
 		EVENT_CLASS_TYPE(MouseMoved)
 			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
-		float m_MouseX, m_MouseY;
+		float d_MouseX, d_MouseY;
 	};
 
 	class DOODA_API MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
-			: m_XOffset(xOffset), m_YOffset(yOffset) {}
+			: d_XOffset(xOffset), d_YOffset(yOffset) {}
 
-		inline float GetXOffset() const { return m_XOffset; }
-		inline float GetYOffset() const { return m_YOffset; }
+		inline float GetXOffset() const { return d_XOffset; }
+		inline float GetYOffset() const { return d_YOffset; }
 
 		std::string ToString() const override
 		{
@@ -45,20 +45,20 @@ namespace Dooda {
 		EVENT_CLASS_TYPE(MouseScrolled)
 			EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	private:
-		float m_XOffset, m_YOffset;
+		float d_XOffset, d_YOffset;
 	};
 
 	class DOODA_API MouseButtonEvent : public Event
 	{
 	public:
-		inline int GetMouseButton() const { return m_Button; }
+		inline int GetMouseButton() const { return d_Button; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	protected:
 		MouseButtonEvent(int button)
-			: m_Button(button) {}
+			: d_Button(button) {}
 
-		int m_Button;
+		int d_Button;
 	};
 
 	class DOODA_API MouseButtonPressedEvent : public MouseButtonEvent
@@ -70,7 +70,7 @@ namespace Dooda {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonPressedEvent: " << m_Button;
+			ss << "MouseButtonPressedEvent: " << d_Button;
 			return ss.str();
 		}
 
@@ -86,7 +86,7 @@ namespace Dooda {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "MouseButtonReleasedEvent: " << m_Button;
+			ss << "MouseButtonReleasedEvent: " << d_Button;
 			return ss.str();
 		}
 

@@ -57,22 +57,22 @@ namespace Dooda
 		using EventFn = std::function<bool(T&)>;
 	public:
 		EventDispatcher(Event& event)
-			: m_Event(event)
+			: d_Event(event)
 		{
 		}
 
 		template<typename T>
 		bool Dispatch(EventFn<T> func)
 		{
-			if (m_Event.GetEventType() == T::GetStaticType())
+			if (d_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.Handled = func(*(T*)& m_Event);
+				d_Event.Handled = func(*(T*)& d_Event);
 				return true;
 			}
 			return false;
 		}
 	private:
-		Event& m_Event;
+		Event& d_Event;
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& e)
