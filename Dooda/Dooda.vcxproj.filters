@@ -7,6 +7,9 @@
     <Filter Include="Dooda\Events">
       <UniqueIdentifier>{509012BE-3CF3-A162-E578-DA18D1BA6DE5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dooda\ImGui">
+      <UniqueIdentifier>{167C2482-8231-9D77-0B26-974E77DA937B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
@@ -38,6 +41,15 @@
     <ClInclude Include="src\Dooda\Events\MouseEvent.h">
       <Filter>Dooda\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Dooda\ImGui\ImGuiLayer.h">
+      <Filter>Dooda\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dooda\Layer.h">
+      <Filter>Dooda</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dooda\LayerStack.h">
+      <Filter>Dooda</Filter>
+    </ClInclude>
     <ClInclude Include="src\Dooda\Log.h">
       <Filter>Dooda</Filter>
     </ClInclude>
@@ -51,6 +63,12 @@
   <ItemGroup>
     <ClCompile Include="src\Ddpch.cpp" />
     <ClCompile Include="src\Dooda\Application.cpp">
+      <Filter>Dooda</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Dooda\Layer.cpp">
+      <Filter>Dooda</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Dooda\LayerStack.cpp">
       <Filter>Dooda</Filter>
     </ClCompile>
     <ClCompile Include="src\Dooda\Log.cpp">

@@ -1,10 +1,9 @@
 #pragma once
 
-//For use by applications
+//For use by applications (aplhebetical order)
 #include "Dooda/Application.h"
+#include "Dooda/Layer.h"
 #include "Dooda/Log.h"
 
-///////////////
-//Entry Point//
-///////////////
+//Entry Point
 #include "Dooda/EntryPoint.h"

@@ -9,8 +9,8 @@ extern Dooda::Application* Dooda::CreateApplication();
 int main(int argc, char** argv)
 {
 	Dooda::Log::Init();
-	DD_CORE_ERROR("Init worked");
-	DD_Client_INFO("Yolo");
+	("Init worked");
+	DD_CLIENT_INFO("Yolo");
 
 	auto app = Dooda::CreateApplication();
 	app->Run();

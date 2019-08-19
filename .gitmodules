@@ -4,3 +4,6 @@
 [submodule "Dooda/vendor/GLFW"]
 	path = Dooda/vendor/GLFW
 	url = https://github.com/Witty13/glfw
+[submodule "Dooda/vendor/imgui"]
+	path = Dooda/vendor/imgui
+	url = https://github.com/Witty13/imgui

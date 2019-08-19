@@ -1,6 +1,8 @@
 #include "Ddpch.h"
 #include "Application.h"
 
+#include "glad/glad.h"
+
 namespace Dooda
 {
 #define BIND_EVENT_FUNCTION(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -19,6 +21,14 @@ namespace Dooda
 	{
 		while (d_running)
 		{
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : d_layerStack)
+			{
+				layer->OnUpdate();
+			}
+
 			d_window->OnUpdate();
 		}
 	}
@@ -28,7 +38,25 @@ namespace Dooda
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FUNCTION(OnWindowClose));
 
-		DD_CORE_INFO("{0}", e);
+		for (auto it = d_layerStack.end(); it != d_layerStack.begin();)
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled)
+			{
+				break;
+			}
+		}
+
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		d_layerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		d_layerStack.PushOverlay(overlay);
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

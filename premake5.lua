@@ -66,14 +66,17 @@ project "Dooda"
 
 	filter "configurations:Debug"
 		defines "DD_DEBUG"
+		buildoptions "/MDd"
 		symbols "on"
 		
 	filter "configurations:Release"
 		defines "DD_RELEASE"
+		buildoptions "/MD"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "DD_DIST"
+		buildoptions "/MD"
 		optimize "on"
 
 
@@ -115,12 +118,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "DD_DEBUG"
+		buildoptions "/MDd"
 		symbols "on"
 		
 	filter "configurations:Release"
 		defines "DD_RELEASE"
+		buildoptions "/MD"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "DD_DIST"
+		buildoptions "/MD"
 		optimize "on"

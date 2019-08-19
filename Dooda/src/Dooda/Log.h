@@ -30,8 +30,8 @@ namespace Dooda
 #define DD_CORE_FATAL(...)	::Dooda::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 //Core log macros
-#define DD_Client_TRACE(...)	::Dooda::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define DD_Client_INFO(...)		::Dooda::Log::GetClientLogger()->info(__VA_ARGS__)
-#define DD_Client_WARN(...)		::Dooda::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define DD_Client_ERROR(...)	::Dooda::Log::GetClientLogger()->error(__VA_ARGS__)
-#define DD_Client_FATAL(...)	::Dooda::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define DD_CLIENT_TRACE(...)	::Dooda::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define DD_CLIENT_INFO(...)		::Dooda::Log::GetClientLogger()->info(__VA_ARGS__)
+#define DD_CLIENT_WARN(...)		::Dooda::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define DD_CLIENT_ERROR(...)	::Dooda::Log::GetClientLogger()->error(__VA_ARGS__)
+#define DD_CLIENT_FATAL(...)	::Dooda::Log::GetClientLogger()->fatal(__VA_ARGS__)

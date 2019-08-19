@@ -13,20 +13,20 @@ namespace Dooda
 
 		void OnUpdate() override;
 
-		inline unsigned int GetWidth() const override { return d_Data.Width; }
-		inline unsigned int GetHeight() const override { return d_Data.Height; }
+		inline unsigned int GetWidth() const override { return d_data.Width; }
+		inline unsigned int GetHeight() const override { return d_data.Height; }
 
 		// Window attributes
-		inline void SetEventCallback(const EventCallbackFn& callback) override { d_Data.EventCallback = callback; }
+		inline void SetEventCallback(const EventCallbackFn& callback) override { d_data.EventCallback = callback; }
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
-		inline virtual void* GetNativeWindow() const { return d_Window; }
+		inline virtual void* GetNativeWindow() const { return d_window; }
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 	private:
-		GLFWwindow* d_Window;
+		GLFWwindow* d_window;
 		//GraphicsContext* d_Context;
 
 		struct WindowData
@@ -38,6 +38,6 @@ namespace Dooda
 			EventCallbackFn EventCallback;
 		};
 
-		WindowData d_Data;
+		WindowData d_data;
 	};
 }

@@ -5,6 +5,8 @@
 #include "Dooda/Events/KeyEvent.h"
 #include "Dooda/Events/MouseEvent.h"
 
+#include "glad/glad.h"
+
 namespace Dooda
 {
 	static bool s_GLFWInitialized = false;
@@ -31,9 +33,9 @@ namespace Dooda
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
-		d_Data.Title = props.Title;
-		d_Data.Width = props.Width;
-		d_Data.Height = props.Height;
+		d_data.Title = props.Title;
+		d_data.Width = props.Width;
+		d_data.Height = props.Height;
 
 		DD_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
@@ -46,16 +48,18 @@ namespace Dooda
 			s_GLFWInitialized = true;
 		}
 
-		d_Window = glfwCreateWindow((int)props.Width, (int)props.Height, d_Data.Title.c_str(), nullptr, nullptr);
+		//d_Context = new OpenGLContext(d_window);
+		//d_Context->Init();
 
-		////d_Context = new OpenGLContext(d_Window);
-		/////d_Context->Init();
-
-		glfwSetWindowUserPointer(d_Window, &d_Data);
+		d_window = glfwCreateWindow((int)props.Width, (int)props.Height, d_data.Title.c_str(), nullptr, nullptr);
+		glfwMakeContextCurrent(d_window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		DD_CORE_ASSERT(status, "Failed to load Glad");
+		glfwSetWindowUserPointer(d_window, &d_data);
 		SetVSync(true);
 
 		// Set GLFW callbacks
-		glfwSetWindowSizeCallback(d_Window, [](GLFWwindow* window, int width, int height)
+		glfwSetWindowSizeCallback(d_window, [](GLFWwindow* window, int width, int height)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				data.Width = width;
@@ -65,14 +69,14 @@ namespace Dooda
 				data.EventCallback(event);
 			});
 
-		glfwSetWindowCloseCallback(d_Window, [](GLFWwindow* window)
+		glfwSetWindowCloseCallback(d_window, [](GLFWwindow* window)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				WindowCloseEvent event;
 				data.EventCallback(event);
 			});
 
-		glfwSetKeyCallback(d_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
+		glfwSetKeyCallback(d_window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -99,7 +103,7 @@ namespace Dooda
 				}
 			});
 
-		glfwSetCharCallback(d_Window, [](GLFWwindow* window, unsigned int keycode)
+		glfwSetCharCallback(d_window, [](GLFWwindow* window, unsigned int keycode)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -107,7 +111,7 @@ namespace Dooda
 				data.EventCallback(event);
 			});
 
-		glfwSetMouseButtonCallback(d_Window, [](GLFWwindow* window, int button, int action, int mods)
+		glfwSetMouseButtonCallback(d_window, [](GLFWwindow* window, int button, int action, int mods)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -128,7 +132,7 @@ namespace Dooda
 				}
 			});
 
-		glfwSetScrollCallback(d_Window, [](GLFWwindow* window, double xOffset, double yOffset)
+		glfwSetScrollCallback(d_window, [](GLFWwindow* window, double xOffset, double yOffset)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -136,7 +140,7 @@ namespace Dooda
 				data.EventCallback(event);
 			});
 
-		glfwSetCursorPosCallback(d_Window, [](GLFWwindow* window, double xPos, double yPos)
+		glfwSetCursorPosCallback(d_window, [](GLFWwindow* window, double xPos, double yPos)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -147,13 +151,14 @@ namespace Dooda
 
 	void WindowsWindow::Shutdown()
 	{
-		glfwDestroyWindow(d_Window);
+		glfwDestroyWindow(d_window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		//////d_Context->SwapBuffers();
+		/////d_Context->SwapBuffers();
+		glfwSwapBuffers(d_window);
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
@@ -163,11 +168,11 @@ namespace Dooda
 		else
 			glfwSwapInterval(0);
 
-		d_Data.VSync = enabled;
+		d_data.VSync = enabled;
 	}
 
 	bool WindowsWindow::IsVSync() const
 	{
-		return d_Data.VSync;
+		return d_data.VSync;
 	}
 }
