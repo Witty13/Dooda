@@ -22,6 +22,9 @@ namespace Dooda
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
 
+		inline static Application& Get() { return *s_Instance; }
+		inline Window& GetWindow() { return *d_window; }
+
 	private: //Member Function
 		bool OnWindowClose(WindowCloseEvent& e);
 
@@ -31,6 +34,9 @@ namespace Dooda
 		bool d_running = true;
 
 		LayerStack d_layerStack;
+
+	private:
+		static Application* s_Instance;
 	};
 
 	Application* CreateApplication();

@@ -5,10 +5,15 @@
 
 namespace Dooda
 {
-#define BIND_EVENT_FUNCTION(x) std::bind(&Application::x, this, std::placeholders::_1)
+	#define BIND_EVENT_FUNCTION(x) std::bind(&Application::x, this, std::placeholders::_1)
+
+	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
 	{
+		DD_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		d_window = std::unique_ptr<Window>(Window::Create());
 		d_window->SetEventCallback(BIND_EVENT_FUNCTION(OnEvent));
 	}
@@ -52,11 +57,13 @@ namespace Dooda
 	void Application::PushLayer(Layer* layer)
 	{
 		d_layerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
 		d_layerStack.PushOverlay(overlay);
+		overlay->OnAttach();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)

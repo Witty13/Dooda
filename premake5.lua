@@ -14,8 +14,16 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 --Include diectories relitive to root folder
 IncludeDir = {}
 IncludeDir["GLFW"] = "Dooda/vendor/GLFW/include"
+IncludeDir["Glad"] = "Dooda/vendor/Glad/include"
+IncludeDir["ImGui"] = "Dooda/vendor/imgui"
 
-include "Dooda/vendor/GLFW"
+--Group the depndancies together
+group "Depedencies"
+	include "Dooda/vendor/GLFW"
+	include "Dooda/vendor/Glad"
+	include "Dooda/vendor/imgui"
+group ""
+
 
 project "Dooda"
 
@@ -23,7 +31,7 @@ project "Dooda"
 	kind "SharedLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -40,13 +48,17 @@ project "Dooda"
 	includedirs 
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}",
+		"%{prj.name}/vendor/spdlog/include"
 	}
 
 	links 
 	{
 		"GLFW",
+		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -56,27 +68,28 @@ project "Dooda"
 		defines 
 		{
 			"DD_PLATFORM_WINDOWS",
-			"DD_BUILD_DLL"
+			"DD_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands 
 		{
-			("{COPY} ../bin/" .. outputdir .. "/Dooda/Dooda.dll ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
 		defines "DD_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "on"
 		
 	filter "configurations:Release"
 		defines "DD_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "DD_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "on"
 
 
@@ -86,7 +99,7 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -118,15 +131,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "DD_DEBUG"
-		buildoptions "/MDd"
+		runtime "debug"
 		symbols "on"
 		
 	filter "configurations:Release"
 		defines "DD_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "DD_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "on"

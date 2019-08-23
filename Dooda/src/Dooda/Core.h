@@ -10,6 +10,10 @@
 	#error Dooda only suports windows
 #endif
 
+#ifdef DD_DEBUG
+	#define DD_ENABLE_ASSERTS
+#endif
+
 #ifdef DD_ENABLE_ASSERTS
 	#define DD_ASSERT(x, ...) { if(!(x)) { DD_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define DD_CORE_ASSERT(x, ...) { if(!(x)) { DD_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
@@ -19,3 +23,5 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#define DD_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
