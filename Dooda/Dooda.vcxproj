@@ -159,11 +159,13 @@
     <ClInclude Include="src\Dooda\Events\KeyEvent.h" />
     <ClInclude Include="src\Dooda\Events\MouseEvent.h" />
     <ClInclude Include="src\Dooda\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Dooda\Input.h" />
     <ClInclude Include="src\Dooda\Layer.h" />
     <ClInclude Include="src\Dooda\LayerStack.h" />
     <ClInclude Include="src\Dooda\Log.h" />
     <ClInclude Include="src\Dooda\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +178,7 @@
     <ClCompile Include="src\Dooda\LayerStack.cpp" />
     <ClCompile Include="src\Dooda\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
