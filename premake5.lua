@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Dooda/vendor/GLFW/include"
 IncludeDir["Glad"] = "Dooda/vendor/Glad/include"
 IncludeDir["ImGui"] = "Dooda/vendor/imgui"
+IncludeDir["glm"] = "Dooda/vendor/glm"
 
 --Group the depndancies together
 group "Depedencies"
@@ -51,6 +52,7 @@ project "Dooda"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}",
 		"%{prj.name}/vendor/spdlog/include"
 	}
 
@@ -113,6 +115,7 @@ project "Sandbox"
 	includedirs 
 	{
 		"Dooda/vendor/spdlog/include",
+		"%{IncludeDir.glm}",
 		"Dooda/src"
 	}
 
