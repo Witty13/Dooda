@@ -1,4 +1,6 @@
-#include <Dooda.h>
+#include "Dooda.h"
+
+#include "imgui/imgui.h"
 
 class ExampleLayer : public Dooda::Layer
 {
@@ -13,6 +15,13 @@ public:
 		DD_CLIENT_INFO("Example Layer Udate");
 	}
 
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
+
 	void OnEvent(Dooda::Event& event) override
 	{
 		DD_CLIENT_TRACE("{0}", event);
@@ -25,7 +34,6 @@ public:
 	SandBox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Dooda::ImGuiLayer());
 	}
 
 	~SandBox()

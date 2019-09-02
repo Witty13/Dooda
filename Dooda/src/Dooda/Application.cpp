@@ -16,6 +16,9 @@ namespace Dooda
 
 		d_window = std::unique_ptr<Window>(Window::Create());
 		d_window->SetEventCallback(BIND_EVENT_FUNCTION(OnEvent));
+
+		d_imGuiLayer = new ImGuiLayer();
+		PushOverlay(d_imGuiLayer);
 	}
 
 	Application::~Application()
@@ -33,6 +36,13 @@ namespace Dooda
 			{
 				layer->OnUpdate();
 			}
+
+			d_imGuiLayer->Begin(); 
+			for (Layer* layer : d_layerStack)
+			{
+				layer->OnImGuiRender();
+			}
+			d_imGuiLayer->End();
 
 			d_window->OnUpdate();
 		}

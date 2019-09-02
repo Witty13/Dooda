@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef DD_PLATFORM_WINDOWS
-	#ifdef DD_BUILD_DLL
-		#define DOODA_API __declspec(dllexport)
-	#else 
-		#define DOODA_API __declspec(dllimport)
+	#ifdef DD_DYNAMIC_LINK
+		#ifdef DD_BUILD_DLL
+			#define DOODA_API __declspec(dllexport)
+		#else 
+			#define DOODA_API __declspec(dllimport)
+		#endif
+	#else
+		#define DOODA_API
 	#endif
 #else
 	#error Dooda only suports windows

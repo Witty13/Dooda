@@ -1,10 +1,13 @@
 #pragma once
 
 #include "Core.h"
+
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "LayerStack.h"
 #include "Window.h"
+
+#include "Dooda/ImGui/ImGuiLayer.h"
 
 namespace Dooda
 {
@@ -30,6 +33,8 @@ namespace Dooda
 
 	private: //Private variables
 		std::unique_ptr<Window> d_window;
+
+		ImGuiLayer* d_imGuiLayer;
 
 		bool d_running = true;
 

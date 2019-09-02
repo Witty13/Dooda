@@ -29,10 +29,10 @@ group ""
 project "Dooda"
 
 	location "Dooda"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "off"
+	staticruntime "on"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -44,6 +44,11 @@ project "Dooda"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
+	}
+
+	defines 
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs 
@@ -74,11 +79,6 @@ project "Dooda"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands 
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "DD_DEBUG"
 		runtime "Debug"
@@ -101,7 +101,7 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "off"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -116,6 +116,7 @@ project "Sandbox"
 	{
 		"Dooda/vendor/spdlog/include",
 		"%{IncludeDir.glm}",
+		"Dooda/vendor",
 		"Dooda/src"
 	}
 
