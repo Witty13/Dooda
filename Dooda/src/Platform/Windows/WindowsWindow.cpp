@@ -5,7 +5,7 @@
 #include "Dooda/Events/KeyEvent.h"
 #include "Dooda/Events/MouseEvent.h"
 
-#include "glad/glad.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Dooda
 {
@@ -48,17 +48,15 @@ namespace Dooda
 			s_GLFWInitialized = true;
 		}
 
-		//d_Context = new OpenGLContext(d_window);
-		//d_Context->Init();
-
 		d_window = glfwCreateWindow((int)props.Width, (int)props.Height, d_data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(d_window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		DD_CORE_ASSERT(status, "Failed to load Glad");
+
+		d_Context = new OpenGLContext(d_window);
+		d_Context->Init();
+
 		glfwSetWindowUserPointer(d_window, &d_data);
 		SetVSync(true);
 
-		// Set GLFW callbacks
+		//Set GLFW callbacks
 		glfwSetWindowSizeCallback(d_window, [](GLFWwindow* window, int width, int height)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -157,8 +155,7 @@ namespace Dooda
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		/////d_Context->SwapBuffers();
-		glfwSwapBuffers(d_window);
+		d_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

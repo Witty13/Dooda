@@ -9,6 +9,9 @@
 
 #include "Dooda/ImGui/ImGuiLayer.h"
 
+#include "Renderer/Shader.h"
+#include "Renderer/Buffer.h"
+
 namespace Dooda
 {
 
@@ -39,6 +42,11 @@ namespace Dooda
 		bool d_running = true;
 
 		LayerStack d_layerStack;
+
+		unsigned int d_vertexArray;
+		std::unique_ptr<Shader> d_shader;
+		std::unique_ptr<VertexBuffer> d_vertexBuffer;
+		std::unique_ptr<IndexBuffer> d_indexBuffer;
 
 	private:
 		static Application* s_Instance;

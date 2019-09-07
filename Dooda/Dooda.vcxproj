@@ -156,7 +156,13 @@
     <ClInclude Include="src\Dooda\LayerStack.h" />
     <ClInclude Include="src\Dooda\Log.h" />
     <ClInclude Include="src\Dooda\MouseButtonCodes.h" />
+    <ClInclude Include="src\Dooda\Renderer\Buffer.h" />
+    <ClInclude Include="src\Dooda\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Dooda\Renderer\Renderer.h" />
+    <ClInclude Include="src\Dooda\Renderer\Shader.h" />
     <ClInclude Include="src\Dooda\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
@@ -170,6 +176,11 @@
     <ClCompile Include="src\Dooda\Layer.cpp" />
     <ClCompile Include="src\Dooda\LayerStack.cpp" />
     <ClCompile Include="src\Dooda\Log.cpp" />
+    <ClCompile Include="src\Dooda\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Dooda\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Dooda\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>

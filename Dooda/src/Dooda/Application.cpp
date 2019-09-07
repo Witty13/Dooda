@@ -19,6 +19,49 @@ namespace Dooda
 
 		d_imGuiLayer = new ImGuiLayer();
 		PushOverlay(d_imGuiLayer);
+
+		glGenVertexArrays(1, &d_vertexArray);
+		glBindVertexArray(d_vertexArray);
+
+		float verticies[3 * 3] =
+		{
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.0f, 0.5f, 0.0f
+		};
+
+		d_vertexBuffer.reset(VertexBuffer::Create(verticies, sizeof(verticies)));
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+
+		uint32_t indicies[3] = { 0, 1, 2 };
+		d_indexBuffer.reset(IndexBuffer::Create(indicies, sizeof(indicies) / sizeof(uint32_t)));
+
+		std::string vertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			out vec3 v_Position;
+			void main()
+			{
+				v_Position = a_Position;
+				gl_Position = vec4(a_Position, 1.0);	
+			}
+		)";
+
+		std::string fragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			in vec3 v_Position;
+			void main()
+			{
+				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+			}
+		)";
+
+		d_shader.reset(new Shader(vertexSrc, fragmentSrc));
 	}
 
 	Application::~Application()
@@ -31,6 +74,10 @@ namespace Dooda
 		{
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			d_shader->Bind();
+			glBindVertexArray(d_vertexArray);
+			glDrawElements(GL_TRIANGLES, d_indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : d_layerStack)
 			{

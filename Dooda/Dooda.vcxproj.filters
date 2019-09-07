@@ -71,6 +71,12 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Dooda\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Dooda\Renderer\Shader.h" />
+    <ClInclude Include="src\Dooda\Renderer\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Dooda\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ddpch.cpp" />
@@ -98,5 +104,10 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Dooda\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Dooda\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Dooda\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>

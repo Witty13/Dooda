@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Dooda/Window.h"
+#include "Dooda/Renderer/GraphicsContext.h"
+
 #include <GLFW/glfw3.h>
 
 namespace Dooda
@@ -27,7 +29,7 @@ namespace Dooda
 		virtual void Shutdown();
 	private:
 		GLFWwindow* d_window;
-		//GraphicsContext* d_Context;
+		GraphicsContext* d_Context;
 
 		struct WindowData
 		{
