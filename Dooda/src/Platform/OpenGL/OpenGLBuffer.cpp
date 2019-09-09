@@ -12,7 +12,7 @@ namespace Dooda
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* verticies, uint32_t size)
 	{
 		glGenBuffers(1, &d_rendererID);
-		Bind();
+		glBindBuffer(GL_ARRAY_BUFFER, d_rendererID);
 		glBufferData(GL_ARRAY_BUFFER, size, verticies, GL_STATIC_DRAW);
 	}
 
@@ -40,7 +40,7 @@ namespace Dooda
 		d_count(count)
 	{
 		glGenBuffers(1, &d_rendererID);
-		Bind();
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, d_rendererID);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), indicies, GL_STATIC_DRAW);
 	}
 

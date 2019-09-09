@@ -13,9 +13,13 @@ namespace Dooda
 
 		virtual void Bind() const;
 		virtual void UnBind() const;
+
+		virtual const BufferLayout& GetLayout() const override { return d_Layout; }
+		virtual void SetLayout(const BufferLayout& layout) override { d_Layout = layout; }
 		
 	private:
 		uint32_t d_rendererID;
+		BufferLayout d_Layout;
 	};
 
 	class OpenGLIndexBuffer : public IndexBuffer

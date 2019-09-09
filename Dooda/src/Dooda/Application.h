@@ -11,6 +11,7 @@
 
 #include "Renderer/Shader.h"
 #include "Renderer/Buffer.h"
+#include "Renderer/VertexArray.h"
 
 namespace Dooda
 {
@@ -43,10 +44,11 @@ namespace Dooda
 
 		LayerStack d_layerStack;
 
-		unsigned int d_vertexArray;
-		std::unique_ptr<Shader> d_shader;
-		std::unique_ptr<VertexBuffer> d_vertexBuffer;
-		std::unique_ptr<IndexBuffer> d_indexBuffer;
+		std::shared_ptr<Shader> d_shader;
+		std::shared_ptr<VertexArray> d_vertexArray;
+
+		std::shared_ptr<Shader> d_blueShader;
+		std::shared_ptr<VertexArray> d_squareVA;
 
 	private:
 		static Application* s_Instance;
