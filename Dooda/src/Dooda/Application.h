@@ -13,6 +13,8 @@
 #include "Renderer/Buffer.h"
 #include "Renderer/VertexArray.h"
 
+#include "Dooda/Renderer/Renderer.h"
+
 namespace Dooda
 {
 

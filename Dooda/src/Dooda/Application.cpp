@@ -1,8 +1,6 @@
 #include "Ddpch.h"
 #include "Application.h"
 
-#include "glad/glad.h"
-
 namespace Dooda
 {
 	#define BIND_EVENT_FUNCTION(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -137,16 +135,18 @@ namespace Dooda
 	{
 		while (d_running)
 		{
-			glClearColor(1, 0, 1, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor(glm::vec4( 0.1f, 0.1f, 0.1f, 1 ));
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			d_blueShader->Bind();
-			d_squareVA->Bind();
-			glDrawElements(GL_TRIANGLES, d_squareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(d_squareVA);
 
 			d_shader->Bind();
-			d_vertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, d_vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(d_vertexArray);
+
+			Renderer::EndScene();
 
 			for (Layer* layer : d_layerStack)
 			{

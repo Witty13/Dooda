@@ -12,7 +12,7 @@ public:
 
 	void OnUpdate() override
 	{
-		DD_CLIENT_INFO("Example Layer Udate");
+		//DD_CLIENT_INFO("Example Layer Udate");
 	}
 
 	void OnImGuiRender() override
@@ -24,7 +24,7 @@ public:
 
 	void OnEvent(Dooda::Event& event) override
 	{
-		DD_CLIENT_TRACE("{0}", event);
+		//DD_CLIENT_TRACE("{0}", event);
 	}
 };
 

@@ -14,6 +14,7 @@
 	#error Dooda only suports windows
 #endif
 
+
 #ifdef DD_DEBUG
 	#define DD_ENABLE_ASSERTS
 #endif

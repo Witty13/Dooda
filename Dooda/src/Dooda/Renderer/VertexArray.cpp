@@ -10,12 +10,12 @@ namespace Dooda {
 	{
 		switch (Renderer::GetCurrentRendererAPI())
 			{
-			case RendererAPI::None:
+			case RendererAPI::API::None:
 			{
 				DD_CORE_ASSERT(false, "RendererAPI::None is not supported!");
 				return nullptr;
 			}
-			case RendererAPI::OpenGl:
+			case RendererAPI::API::OpenGL:
 			{
 				return new OpenGLVertexArray();
 			}

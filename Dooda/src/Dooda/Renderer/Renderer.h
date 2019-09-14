@@ -1,21 +1,19 @@
 #pragma once
 
+#include "RenderCommand.h"
+
 namespace Dooda
 {
-
-	enum class RendererAPI
-	{
-		None = 0,
-		OpenGl = 1
-	};
 
 	class Renderer
 	{
 	public:
-		inline static RendererAPI GetCurrentRendererAPI() { return D_rendererAPI; }
+		static void BeginScene();
+		static void EndScene();
 
-	private:
-		static RendererAPI D_rendererAPI;
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetCurrentRendererAPI() { return RendererAPI::GetAPI(); }
 	};
 
 }
