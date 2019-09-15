@@ -9,11 +9,7 @@
 
 #include "Dooda/ImGui/ImGuiLayer.h"
 
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-
-#include "Dooda/Renderer/Renderer.h"
+#include "Dooda/Core/Timestep.h"
 
 namespace Dooda
 {
@@ -46,11 +42,7 @@ namespace Dooda
 
 		LayerStack d_layerStack;
 
-		std::shared_ptr<Shader> d_shader;
-		std::shared_ptr<VertexArray> d_vertexArray;
-
-		std::shared_ptr<Shader> d_blueShader;
-		std::shared_ptr<VertexArray> d_squareVA;
+		float d_lastFrameTime = 0.0f;
 
 	private:
 		static Application* s_Instance;

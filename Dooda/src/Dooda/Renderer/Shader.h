@@ -2,6 +2,8 @@
 
 #include "Ddpch.h"
 
+#include "glm/glm.hpp"
+
 namespace Dooda {
 
 	class Shader
@@ -12,6 +14,8 @@ namespace Dooda {
 
 		void Bind() const;
 		void Unbind() const;
+
+		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 
 	private:
 		uint32_t d_rendererID;

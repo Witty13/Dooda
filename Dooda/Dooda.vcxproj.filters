@@ -74,7 +74,16 @@
     <ClInclude Include="src\Dooda\Renderer\GraphicsContext.h">
       <Filter>Dooda\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Dooda\Renderer\OrthographicCamera.h">
+      <Filter>Dooda\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dooda\Renderer\RenderCommand.h">
+      <Filter>Dooda\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Dooda\Renderer\Renderer.h">
+      <Filter>Dooda\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Dooda\Renderer\RendererAPI.h">
       <Filter>Dooda\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Dooda\Renderer\Shader.h">
@@ -92,6 +101,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
@@ -101,9 +113,7 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Dooda\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Dooda\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Dooda\Core\Timestep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Ddpch.cpp" />
@@ -128,7 +138,16 @@
     <ClCompile Include="src\Dooda\Renderer\Buffer.cpp">
       <Filter>Dooda\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Dooda\Renderer\OrthographicCamera.cpp">
+      <Filter>Dooda\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Dooda\Renderer\RenderCommand.cpp">
+      <Filter>Dooda\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Dooda\Renderer\Renderer.cpp">
+      <Filter>Dooda\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Dooda\Renderer\RendererAPI.cpp">
       <Filter>Dooda\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Dooda\Renderer\Shader.cpp">
@@ -143,6 +162,9 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
@@ -152,8 +174,5 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Dooda\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Dooda\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
   </ItemGroup>
 </Project>
