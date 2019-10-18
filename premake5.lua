@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Dooda/vendor/GLFW/include"
 IncludeDir["Glad"] = "Dooda/vendor/Glad/include"
 IncludeDir["ImGui"] = "Dooda/vendor/imgui"
 IncludeDir["glm"] = "Dooda/vendor/glm"
+IncludeDir["stb_image"] = "Dooda/vendor/stb_image"
 
 --Group the depndancies together
 group "Depedencies"
@@ -43,7 +44,11 @@ project "Dooda"
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	defines 
@@ -58,7 +63,8 @@ project "Dooda"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links 
@@ -68,7 +74,7 @@ project "Dooda"
 		"ImGui",
 		"opengl32.lib"
 	}
-
+	
 	filter "system:windows" 
 		systemversion "latest"
 		

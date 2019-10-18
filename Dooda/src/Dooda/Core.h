@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef DD_PLATFORM_WINDOWS
 	#ifdef DD_DYNAMIC_LINK
 		#ifdef DD_BUILD_DLL
@@ -30,3 +32,13 @@
 #define BIT(x) (1 << x)
 
 #define DD_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+namespace Dooda {
+
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+
+}
