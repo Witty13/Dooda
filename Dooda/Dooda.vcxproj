@@ -396,6 +396,7 @@
     <ClInclude Include="vendor\glm\glm\gtx\wrap.hpp" />
     <ClInclude Include="vendor\glm\glm\gtx\wrap.inl" />
     <ClInclude Include="vendor\glm\glm\virtrev\xstream.hpp" />
+    <ClInclude Include="vendor\spdlog\include\spdlog\sinks\stdout_color_sinks.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>

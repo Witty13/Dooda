@@ -30,7 +30,7 @@ namespace Dooda
 	void LayerStack::PopLayer(Layer* layer)
 	{
 		auto it = std::find(d_layers.begin(), d_layers.begin() + d_layerInsertIndex, layer);
-		if (it != d_layers.end())
+		if (it != d_layers.begin() + d_layerInsertIndex)
 		{
 			layer->OnDetach();
 			d_layers.erase(it);

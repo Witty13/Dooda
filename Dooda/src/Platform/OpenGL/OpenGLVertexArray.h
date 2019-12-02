@@ -22,7 +22,8 @@ namespace Dooda
 	private:
 		uint32_t d_rendererID;
 		std::vector<Ref<VertexBuffer>> d_vertexBuffers;
-		Ref<IndexBuffer> d_indexBuffer;
+		Ref<IndexBuffer> d_indexBuffer; 
+		uint32_t m_VertexBufferIndex = 0;
 	};
 
 }
