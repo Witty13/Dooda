@@ -7,6 +7,11 @@ namespace Dooda
 {
 	Renderer::SceneData* Renderer::d_sceneData = new Renderer::SceneData;
 
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
 		d_sceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();

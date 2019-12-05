@@ -59,11 +59,11 @@ project "Dooda"
 	includedirs 
 	{
 		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.stb_image}"
 	}
 
@@ -121,9 +121,9 @@ project "Sandbox"
 	includedirs 
 	{
 		"Dooda/vendor/spdlog/include",
-		"%{IncludeDir.glm}",
+		"Dooda/src",
 		"Dooda/vendor",
-		"Dooda/src"
+		"%{IncludeDir.glm}"
 	}
 
 	links 

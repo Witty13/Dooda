@@ -6,7 +6,7 @@
 
 namespace Dooda {
 
-	Ref<Texture2D> Texture2D::Create(const std::string& path)
+	Ref<Texture2D> Texture2D::Create()
 	{
 		switch (Renderer::GetCurrentRendererAPI())
 		{
@@ -17,7 +17,7 @@ namespace Dooda {
 		}
 		case RendererAPI::API::OpenGL:
 		{
-			return std::make_shared<OpenGLTexture2D>(path);
+			return std::make_shared<OpenGLTexture2D>();
 		}
 		}
 
