@@ -8,6 +8,11 @@ workspace "Dooda"
 		"Release",
 		"Dist"
 	}
+	
+	flags
+	{
+		"MultiProcessorCompile"
+	}
 	 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -40,6 +45,11 @@ project "Dooda"
 
 	pchheader "Ddpch.h"
 	pchsource "Dooda/src/Ddpch.cpp"
+
+	disablewarnings 
+	{ 
+		"26495"
+	}
 
 	files 
 	{

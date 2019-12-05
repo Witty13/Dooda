@@ -6,7 +6,11 @@ namespace Dooda {
 
 	class DOODA_API Input
 	{
+	protected:
+		Input() = default;
 	public:
+		Input(const Input&) = delete;
+		Input& operator=(const Input&) = delete;
 		inline static bool IsKeyPressed(int keycode) { return s_instance->IsKeyPressedImpl(keycode); }
 
 		inline static bool IsMouseButtonPressed(int button) { return s_instance->IsMouseButtonPressedImpl(button); }

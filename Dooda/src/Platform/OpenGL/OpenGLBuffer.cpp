@@ -40,8 +40,8 @@ namespace Dooda
 		d_count(count)
 	{
 		glGenBuffers(1, &d_rendererID);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, d_rendererID);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), indicies, GL_STATIC_DRAW);
+		glBindBuffer(GL_ARRAY_BUFFER, d_rendererID);
+		glBufferData(GL_ARRAY_BUFFER, count * sizeof(uint32_t), indicies, GL_STATIC_DRAW);
 	}
 
 	OpenGLIndexBuffer::~OpenGLIndexBuffer()

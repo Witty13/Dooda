@@ -53,20 +53,18 @@ namespace Dooda
 
 	class EventDispatcher
 	{
-		template<typename T>
-		using EventFn = std::function<bool(T&)>;
 	public:
 		EventDispatcher(Event& event)
 			: d_Event(event)
 		{
 		}
 
-		template<typename T>
-		bool Dispatch(EventFn<T> func)
+		template<typename T, typename F>
+		bool Dispatch(const F& func)
 		{
 			if (d_Event.GetEventType() == T::GetStaticType())
 			{
-				d_Event.Handled = func(*(T*)& d_Event);
+				d_Event.Handled = func(static_cast<T&>(d_Event));
 				return true;
 			}
 			return false;
