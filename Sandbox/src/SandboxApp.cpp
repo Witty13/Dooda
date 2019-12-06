@@ -229,6 +229,8 @@ public:
 
 		m_Texture->Bind("Logo");
 		Dooda::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.5f), glm::vec3(1.0f)));
+
+		//End the draw loop
 		Dooda::Renderer::EndScene();
 	}
 

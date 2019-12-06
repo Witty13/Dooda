@@ -27,11 +27,11 @@ namespace Dooda
 #define DD_CORE_INFO(...)	::Dooda::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define DD_CORE_WARN(...)	::Dooda::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define DD_CORE_ERROR(...)	::Dooda::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define DD_CORE_FATAL(...)	::Dooda::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define DD_CORE_CRITICAL(...)	::Dooda::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 //Core log macros
-#define DD_CLIENT_TRACE(...)	::Dooda::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define DD_CLIENT_INFO(...)		::Dooda::Log::GetClientLogger()->info(__VA_ARGS__)
-#define DD_CLIENT_WARN(...)		::Dooda::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define DD_CLIENT_ERROR(...)	::Dooda::Log::GetClientLogger()->error(__VA_ARGS__)
-#define DD_CLIENT_FATAL(...)	::Dooda::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define DD_TRACE(...)		::Dooda::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define DD_INFO(...)		::Dooda::Log::GetClientLogger()->info(__VA_ARGS__)
+#define DD_WARN(...)		::Dooda::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define DD_ERROR(...)		::Dooda::Log::GetClientLogger()->error(__VA_ARGS__)
+#define DD_CRITICAL(...)	::Dooda::Log::GetClientLogger()->critical(__VA_ARGS__)

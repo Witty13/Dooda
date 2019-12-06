@@ -18,7 +18,7 @@ namespace Dooda
 	{
 	public: //Public Functions
 		Application();
-		virtual ~Application();
+		virtual ~Application() = default;
 
 		void Run();
 

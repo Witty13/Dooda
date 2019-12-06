@@ -17,10 +17,6 @@ namespace Dooda
 	{
 	}
 
-	ImGuiLayer::~ImGuiLayer()
-	{
-	}
-
 	void ImGuiLayer::OnAttach()
 	{
 

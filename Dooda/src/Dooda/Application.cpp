@@ -26,10 +26,6 @@ namespace Dooda
 
 	}
 
-	Application::~Application()
-	{
-	}
-
 	void Dooda::Application::Run()
 	{
 		while (d_running)
@@ -73,13 +69,11 @@ namespace Dooda
 	void Application::PushLayer(Layer* layer)
 	{
 		d_layerStack.PushLayer(layer);
-		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
 		d_layerStack.PushOverlay(overlay);
-		overlay->OnAttach();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e)
