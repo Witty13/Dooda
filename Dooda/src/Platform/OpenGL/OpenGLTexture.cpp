@@ -7,37 +7,40 @@
 
 namespace Dooda {
 
-	OpenGLTexture2D::OpenGLTexture2D()
-		: m_RendererIDs()
+	OpenGLTexture2DManager::OpenGLTexture2DManager()
 	{
 	}
 
-	OpenGLTexture2D::~OpenGLTexture2D()
+	OpenGLTexture2DManager::~OpenGLTexture2DManager()
 	{
-		glDeleteTextures(1, &m_RendererID);
-	}
-
-	void OpenGLTexture2D::Bind(const std::string& name, uint32_t slot) const
-	{
-		std::unordered_map<std::string, uint32_t>::const_iterator got = m_RendererIDs.find(name);
-		if (got == m_RendererIDs.end())
+		for (auto i = m_TextureInfo.begin(); i != m_TextureInfo.end(); i++) 
 		{
-			return;
+			glDeleteTextures(1, &i->second.m_RendererID);
 		}
-
-		glBindTexture(GL_TEXTURE_2D, got->second);
 	}
-	void OpenGLTexture2D::AddTexture(const std::string& path, const std::string& name)
-	{
 
+	void OpenGLTexture2DManager::Bind(const std::string& name, uint32_t slot) const
+	{
+		auto Find = m_TextureInfo.find(name);
+		if (Find != m_TextureInfo.end())
+		{
+			glBindTexture(GL_TEXTURE_2D, Find->second.m_RendererID);
+		}
+	}
+	void OpenGLTexture2DManager::AddTexture(const std::string& path, const std::string& name)
+	{
+		//Variables
 		int width, height, channels;
+		TextureInfo TempTexture;
+		GLenum internalFormat = 0, dataFormat = 0;
+
 		stbi_set_flip_vertically_on_load(1);
+
 		stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 4);
 		DD_CORE_ASSERT(data, "Failed to load image!");
-		m_Width = width;
-		m_Height = height;
 
-		GLenum internalFormat = 0, dataFormat = 0;
+		TempTexture.m_Width = width;
+		TempTexture.m_Height = height;
 
 		if (channels == 4)
 		{
@@ -53,32 +56,18 @@ namespace Dooda {
 
 		DD_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
 
-		uint32_t rendererID;
-		glGenTextures(1, &rendererID);
-
 		//Generate the texture
 		glActiveTexture(GL_TEXTURE0);
-		m_RendererIDs.emplace(name, rendererID);
-
-		glBindTexture(GL_TEXTURE_2D, rendererID);
-
-
-
-/*Error Checking
-#if glCreateTextures != NULL
-
-		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
-
-#endif
-*/
+		glGenTextures(1, &TempTexture.m_RendererID);
+		glBindTexture(GL_TEXTURE_2D, TempTexture.m_RendererID);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, m_Width, m_Height, 0, dataFormat, GL_UNSIGNED_BYTE, data);
-
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
+		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, TempTexture.m_Width, TempTexture.m_Height, 0, dataFormat, GL_UNSIGNED_BYTE, data);
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, TempTexture.m_Width, TempTexture.m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
 
 		stbi_image_free(data);
+		m_TextureInfo.emplace(name, TempTexture);
 	}
 }

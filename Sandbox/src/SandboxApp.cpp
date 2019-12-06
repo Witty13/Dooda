@@ -161,7 +161,7 @@ public:
 
 		m_TextureShader.reset(Dooda::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
-		m_Texture = Dooda::Texture2D::Create();
+		m_Texture = Dooda::Texture2DManager::Create();
 		m_Texture->AddTexture("assets/textures/ChernoLogo.png", "Logo");
 		m_Texture->AddTexture("assets/textures/Checkerboard.png", "Checkerboard");
 
@@ -224,19 +224,11 @@ public:
 			}
 		}
 
-		//Dooda::Renderer::Submit(d_shader, d_vertexArray);
-
-		/*m_ChernoLogoTexture->Bind();
-		Dooda::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-		*/
 		m_Texture->Bind("Checkerboard");
 		Dooda::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.5f), glm::vec3(1.5f)));
 
 		m_Texture->Bind("Logo");
-		Dooda::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.5f), glm::vec3(1.5f)));
-
-		// Triangle
-		// Dooda::Renderer::Submit(m_Shader, m_VertexArray);
+		Dooda::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.5f), glm::vec3(1.0f)));
 		Dooda::Renderer::EndScene();
 	}
 
@@ -258,8 +250,8 @@ private:
 	Dooda::Ref<Dooda::Shader> m_FlatColorShader, m_TextureShader;
 	Dooda::Ref<Dooda::VertexArray> m_SquareVA;
 
-	Dooda::Ref<Dooda::Texture2D> m_Texture;
-	Dooda::Ref<Dooda::Texture2D> m_ChernoLogoTexture;
+	Dooda::Ref<Dooda::Texture2DManager> m_Texture;
+	Dooda::Ref<Dooda::Texture2DManager> m_ChernoLogoTexture;
 
 	Dooda::OrthographicCamera d_camera;
 	glm::vec3 d_cameraPosition;

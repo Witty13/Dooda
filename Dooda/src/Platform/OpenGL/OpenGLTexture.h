@@ -4,21 +4,26 @@
 
 namespace Dooda {
 
-	class OpenGLTexture2D : public Texture2D
+	struct TextureInfo
+	{
+		uint32_t m_Width, m_Height;
+		uint32_t m_RendererID;
+	};
+
+	class OpenGLTexture2DManager : public Texture2DManager
 	{
 	public:
-		OpenGLTexture2D();
-		virtual ~OpenGLTexture2D();
+		OpenGLTexture2DManager();
+		virtual ~OpenGLTexture2DManager();
 
-		virtual uint32_t GetWidth() const override { return m_Width; }
-		virtual uint32_t GetHeight() const override { return m_Height; }
+		virtual uint32_t GetWidth(const std::string& name) const override { return m_TextureInfo.find(name)->second.m_Width; }
+		virtual uint32_t GetHeight(const std::string& name) const override { return m_TextureInfo.find(name)->second.m_Height; }
 
 		virtual void Bind(const std::string& name, uint32_t slot = 0) const override;
 		virtual void AddTexture(const std::string& path, const std::string& name) override;
+
 	private:
-		uint32_t m_Width, m_Height;
-		std::unordered_map<std::string, uint32_t> m_RendererIDs;
-		uint32_t m_RendererID;
+		std::unordered_map<std::string, TextureInfo> m_TextureInfo;
 	};
 
 }
